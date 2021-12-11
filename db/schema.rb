@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 2021_12_11_140754) do
     t.index ["city"], name: "ix_addresses_city"
     t.index ["country"], name: "ix_addresses_country"
     t.index ["dealer_id"], name: "id_addresses_dealer_id"
+    t.index ["street", "city", "country", "zipcode"], name: "ux_addresses", unique: true
     t.index ["zipcode"], name: "ix_addresses_zipcode"
   end
 

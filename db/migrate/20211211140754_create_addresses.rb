@@ -15,5 +15,6 @@ class CreateAddresses < ActiveRecord::Migration[6.0]
     add_index :addresses, :city, name: :ix_addresses_city
     add_index :addresses, :country, name: :ix_addresses_country
     add_index :addresses, :zipcode, name: :ix_addresses_zipcode
+    add_index :addresses, [:street, :city, :country, :zipcode], unique: true, name: :ux_addresses
   end
 end

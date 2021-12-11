@@ -10,9 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2021_12_11_140754) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "addresses", force: :cascade do |t|
+    t.bigint "dealer_id", null: false
+    t.string "street", null: false
+    t.string "city", null: false
+    t.string "zipcode", null: false
+    t.string "country", null: false
+    t.float "latitude", null: false
+    t.float "longitude", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["city"], name: "ix_addresses_city"
+    t.index ["country"], name: "ix_addresses_country"
+    t.index ["dealer_id"], name: "id_addresses_dealer_id"
+    t.index ["zipcode"], name: "ix_addresses_zipcode"
+  end
+
+  create_table "dealers", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "phone", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "ux_dealers_name", unique: true
+    t.index ["phone"], name: "ux_dealers_phone", unique: true
+  end
+
+  add_foreign_key "addresses", "dealers", name: "fk_addresses_dealer_id"
 end

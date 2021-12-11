@@ -1,0 +1,21 @@
+# To run the app locally you need to have the DB running on your machine. The app is running on PostgreSQL database.
+# So the following steps should be undertaken to create a working DB:
+# 1. Install PostgreSQL database.
+# 2. Create file /config/database.yml in the app root directory.
+# 3  Copy the configuration below into that file.
+# 4. Create a DB user with rights to create databases.
+# 5. Replace the stubs <...> with prefered development and test database names and the name of the DB user created in the previous step.
+# 6. Navigate to the app directory.
+# 7. Run the following commands one after another in the command line:
+# 7.1 bin/rails db:create
+# 7.2 bin/rails db:migrate
+
+development: &default
+  adapter: postgresql
+  database: <your_development_db_name>
+  username: <your_db_account_name>
+
+test:
+  <<: *default
+  database: <your_test_db_name>
+  username: <your_db_account_name>

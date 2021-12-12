@@ -6,6 +6,10 @@ class SyncDealerDataService
   def call
     # We presume company names are unique and can't be changed,
     # otherwise it would be impossible ot identify a company.
+
+    actual_nameset = @parsed_data.map { |dealer_hash| dealer_hash['name'] }
+    Dealer.where.not(name: actual_nameset).destroy
+
     @parsed_data.each do |dealer_hash|
       dealer = Dealer.find_by(name: dealer_hash['name'])
       int_phone = dealer_hash['phone']&.delete_prefix('+')&.to_i
@@ -30,6 +34,17 @@ class SyncDealerDataService
       else
         dealer.update(phone: int_phone) if dealer.phone != int_phone
 
+        dealer.addresses.find_each do |address|
+          to_be_removed = dealer_hash['addresses'].none? do |address_hash|
+            address_hash['street'] == address.street &&
+              address_hash['city'] == address.city &&
+              address_hash['zipcode'] == address.zipcode &&
+              address_hash['country'] == address.country
+          end
+
+          address.destroy if to_be_removed
+        end
+
         dealer_hash['addresses'].each do |address_hash|
           next if address_hash['latitude'].blank? || address_hash['longitude'].blank? ||
                   dealer.addresses.exists(
@@ -50,7 +65,5 @@ class SyncDealerDataService
         end
       end
     end
-
-    
   end
 end

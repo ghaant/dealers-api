@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 2021_12_11_140754) do
 
   create_table "dealers", force: :cascade do |t|
     t.string "name", null: false
-    t.integer "phone", null: false
+    t.bigint "phone", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["name"], name: "ux_dealers_name", unique: true

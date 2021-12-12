@@ -12,13 +12,12 @@ class Address < ApplicationRecord
     joins(
       <<~SQL
         INNER JOIN (
-                    SELECT a.id
-                    FROM (
-                          SELECT id, ROW_NUMBER() OVER(PARTITION BY dealer_id) AS row_num
-                          FROM addresses
-                          ) a
-                    WHERE a.row_num = 1
-                    ) ca ON ca.id = addresses.id
+                    SELECT
+                      id,
+                      ROW_NUMBER() OVER(PARTITION BY dealer_id) AS row_num
+                    FROM addresses
+                    ) a ON a.id = addresses.id
+                       AND a.row_num = 1
       SQL
     )
   }

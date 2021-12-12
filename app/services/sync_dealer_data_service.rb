@@ -18,7 +18,6 @@ class SyncDealerDataService
         create_dealer(dealer_hash['name'], int_phone, dealer_hash['addresses'])
       else
         delete_non_actual_addresses(dealer.addresses, dealer_hash['addresses'])
-
         update_dealer(dealer, int_phone, dealer_hash['addresses'])
       end
     end

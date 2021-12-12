@@ -1,5 +1,5 @@
 # Dealers API
-Dealers API is a simple API intended for fetching the dealers data (name, phone number and addresses) from the remote server storing it with ability to search through the stored data.
+Dealers API is a simple API intended for fetching the dealers data (name, phone number and addresses) from the remote server and storing it locally with ability to search through the stored data.
 
 ## Endpoints and features
  1. **GET   /sync_data** - the endpoint calling which a user can sync the local data with the data on the remote server. This includes creating new records when there are some on the server, updating existing ones in case anything changed and deleting local records if they are not present on the server anymore.

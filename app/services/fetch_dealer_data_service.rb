@@ -5,5 +5,7 @@ class FetchDealerDataService
 
   def self.call
     Faraday.get(FAKER_API_ENDPOINT)
+  rescue Faraday::ConnectionFailed
+    nil
   end
 end

@@ -55,7 +55,7 @@ class SyncDealerDataService
     dealer.update(phone: phone) if dealer.phone != phone
 
     addresses.each do |address_hash|
-      next if dealer.addresses.exists(
+      next if dealer.addresses.exists?(
         street: address_hash['street'],
         city: address_hash['city'],
         zipcode: address_hash['zipcode'],

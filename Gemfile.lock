@@ -113,6 +113,8 @@ GEM
       nio4r (~> 2.0)
     racc (1.6.0)
     rack (2.2.3)
+    rack-attack (6.5.0)
+      rack (>= 1.0, < 3)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (6.0.4.1)
@@ -187,6 +189,7 @@ DEPENDENCIES
   faraday
   pg (>= 0.18, < 2.0)
   puma (~> 4.1)
+  rack-attack
   rails (~> 6.0.4, >= 6.0.4.1)
   rspec-rails (~> 5.0.0)
   spring

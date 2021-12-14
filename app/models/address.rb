@@ -5,8 +5,8 @@ class Address < ApplicationRecord
   validates :city, presence: true
   validates :zipcode, presence: true
   validates :country, presence: true
-  validates :latitude, presence: true, numericality: true
-  validates :longitude, presence: true, numericality: true
+  validates :latitude, numericality: true
+  validates :longitude, numericality: true
 
   scope :current_addresses, lambda {
     joins(
